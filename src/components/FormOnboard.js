@@ -62,6 +62,7 @@ const FormOnboard = ({ values, errors, touched, status}) => {
                     <li>Name: {user.name}</li>
                     <li>Email: {user.email}</li>
                     <li>Password: {"*".repeat(user.password.length)}</li>
+                    <li>ToS: {user.tos ? "true" : "false"}</li>
                 </ul>                    
             ))}
         </FormStyle>
@@ -86,12 +87,13 @@ const ForMikFormOnboard = withFormik({
         console.log("submitting", values);
         axios.post("https://reqres.in/api/users", values)
         .then(res => {
+            console.log(res.data)
             console.log("success", res)
             setStatus(res.data)
             resetForm();
         })
         .catch(err => console.log(err.response));
-    }
+     }
 })(FormOnboard);
 
  
